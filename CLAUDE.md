@@ -12,25 +12,35 @@ Do not invent build or test commands. If application code is added later, update
 
 The active phase of this project is **writing requirements documents and building the Product Backlog**. Work concentrates in `docs/01-requirements/`:
 
-| Folder | Holds |
+| Path | Holds |
 | --- | --- |
-| `01-spec/` | Feature requirements, user stories / use cases, business rules, project scope (in / out) — the source of truth |
+| `01-spec/` | Spec documents, one per requirement — the source of truth |
+| `backlog.md` | **Product Backlog** — the single master list, append-only |
 | `02-plan/` | Roadmap, phases and milestones, feature priority, resource and time estimates |
-| `03-task/` | **Product Backlog** — actionable items broken out of the plan, with status, owner, and deadline |
+| `03-task/` | Detailed task breakdown of individual backlog items, once work starts |
+
+Use the **`requirement-to-backlog` skill** for anything that starts from a raw requirement. It runs the full pipeline — analyze against existing specs, clarify with the user, write the spec, update the backlog, write the log — and it owns the file-naming and ID rules below. Do not hand-roll these steps; the skill exists so the numbering and traceability stay consistent. It delegates the read-only analysis to the `requirement-analyst` subagent, which never writes and never asks the user directly.
+
+Established conventions (set by that skill — follow them if you ever touch these files by hand):
+
+- Spec filename: `docs/01-requirements/01-spec/{YYYYMMDD}-{NNN}-{slug}.md`. `NNN` is a **global** 3-digit sequence that never resets and is never reused; the slug is lowercase ASCII kebab-case even though the body is Thai.
+- Requirement ids: `SPEC-{NNN}` → `FR-{NNN}-01` → backlog `BL-{NNN}-01`.
+- Backlog priority is MoSCoW; status is `ยังไม่เริ่ม / กำลังทำ / เสร็จแล้ว / ยกเลิก`.
+- Each working session appends to `docs/05-log/{YYYYMMDD}-log.md` — decisions and their reasons, not a file diff.
 
 Guidance for this phase:
 
-- Requirements flow **one direction**: `01-spec` → `02-plan` → `03-task`. A backlog item must trace back to something stated in `01-spec`. If you find a backlog item with no matching spec, that is a gap in the spec — raise it rather than inventing a requirement to justify the item.
+- Requirements flow **one direction**: `01-spec` → `backlog.md` → `02-plan` / `03-task`. Every backlog item must trace back to an `FR-` id in a spec. A backlog item with no matching spec is a gap in the spec — raise it rather than inventing a requirement to justify the item.
 - Scope belongs in `01-spec` and nowhere else. Both what the system does *and* what it explicitly does not do.
 - `02-design/`, `03-testing/`, `04-retrospectives/` are placeholders for later phases. Do not populate them ahead of the requirements — a design doc written before its spec exists will conflict with it.
-- The backlog item format (ID scheme, user story template, acceptance criteria, priority scale, status values) **has not been decided yet**. If you write the first backlog document, propose a format and get it confirmed before applying it across the vault; afterwards, follow whatever is already there.
+- When a requirement is unclear, ask the user rather than guessing, and always offer at least 3 distinct options with their trade-offs. Anything you assume instead of confirming must be written into the spec's ข้อสมมติ section, not left implicit.
 
 ## Documentation pipeline
 
 `docs/` is not a flat folder set — it encodes a one-directional workflow, and each `index.md` states which stage feeds it and which stage it feeds. Understanding this flow matters more than the file listing:
 
 ```
-01-requirements/01-spec  →  01-requirements/02-plan  →  01-requirements/03-task
+01-requirements/01-spec  →  01-requirements/backlog.md  →  02-plan  →  03-task
                                                               ↓
                           02-design/01-prototypes  →  02-design/02-technical
                                                               ↓
