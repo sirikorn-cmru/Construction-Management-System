@@ -27,8 +27,10 @@ Filenames are `{YYYYMMDD}-{NNN}-{slug}.md`. `NNN` is a **global** 3-digit sequen
 If `RAW_REQUIREMENT` touches ground an existing spec already covers, judge which of these applies and say why:
 
 - **NEW** — distinct subject; no meaningful overlap.
-- **EXTEND** — the same subject, and the new content sits naturally inside an existing spec's scope. Name the file and the exact sections to change.
-- **SUPERSEDE** — the same subject, but the new content contradicts or replaces what the existing spec says. Name the file to be superseded. (Superseded specs are never deleted; they get `สถานะ: superseded` and later move to `docs/00-archived/`.)
+- **EXTEND** — the same subject, and the new content sits naturally inside an existing spec's scope. Name the file and the exact sections to change. **Only available when the target spec's status is `draft`** — an approved spec's requirements are frozen, so extending one is not an option no matter how well the content fits.
+- **SUPERSEDE** — the same subject, but the new content contradicts or replaces what the existing spec says, or the target spec is `approved` and the change touches an FR, BR, scope boundary, or acceptance criterion. Name the file to be superseded. (Superseded specs are never deleted; they get `สถานะ: superseded` and later move to `docs/00-archived/`.)
+
+Always report the target spec's status alongside the decision, so the skill can tell the user why EXTEND was or was not available.
 
 Overlap is judged by *subject and scope*, not by keyword similarity. Two specs mentioning "ผู้รับเหมา" are not the same subject if one is about registering contractors and the other about paying them.
 

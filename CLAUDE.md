@@ -25,6 +25,7 @@ Two skills own this phase. Do not hand-roll their steps; they exist so the numbe
 | --- | --- | --- |
 | `requirement-to-backlog` | A raw requirement arrives. Analyzes it against existing specs, clarifies with the user, writes the spec, updates the backlog, writes the log. Owns the naming and id rules below. | `requirement-analyst` |
 | `audit-backlog` | Checking whether the backlog still matches the specs, or after a spec was edited outside the pipeline. Reports drift and fixes the backlog — never the specs. | `backlog-auditor` |
+| `approve-spec` | Moving a spec from draft to approved. Runs the readiness gates, presents what approving commits to, records the owner's decision. | `spec-readiness-reviewer` |
 
 Established conventions (set by that skill — follow them if you ever touch these files by hand):
 
@@ -32,6 +33,16 @@ Established conventions (set by that skill — follow them if you ever touch the
 - Requirement ids: `SPEC-{NNN}` → `FR-{NNN}-01` → backlog `BL-{NNN}-01`.
 - Backlog priority is MoSCoW; status is `ยังไม่เริ่ม / กำลังทำ / เสร็จแล้ว / ยกเลิก`.
 - Each working session appends to `docs/05-log/{YYYYMMDD}-log.md` — decisions and their reasons, not a file diff.
+
+### Spec lifecycle
+
+`draft → approved → superseded`. A spec's status governs what may be done to it:
+
+- **Only the project owner approves.** A passing readiness check is not approval; neither is agreement about something else in the conversation. Never set `สถานะ: approved` without an explicit yes.
+- Approval requires all three gates: no open questions, every `FR-` covered by a backlog row, and a clean `audit-backlog` run.
+- **After approval, wording may be corrected in place; meaning may not.** Any change to an `FR-`, `BR-`, scope boundary, or acceptance criterion requires a new spec carrying `supersedes:`. This is why `requirement-analyst` offers EXTEND only for specs still in draft.
+- Work may start against a draft spec. Its backlog rows carry `(draft)` in the `Spec` column so whoever picks one up knows the requirement can still move; `approve-spec` clears the marker.
+- Superseded specs are never deleted — they keep `สถานะ: superseded` and later move to `docs/00-archived/`.
 
 Guidance for this phase:
 

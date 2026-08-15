@@ -31,6 +31,7 @@ Against the rules in `CLAUDE.md` and the backlog header:
 - `อัปเดตล่าสุด` is a real `YYYY-MM-DD` date
 - Spec filename `{YYYYMMDD}-{NNN}-{slug}.md` with a global, never-reused `{NNN}` matching its `spec-id`
 - Every spec appears in the table in `docs/01-requirements/01-spec/index.md`, with a status matching the one in its own frontmatter — a spec missing from the index is invisible to anyone browsing the vault
+- Rows citing a `draft` spec carry the `(draft)` marker in the `Spec` column, and rows citing an `approved` spec do not. A stale marker either way misleads whoever picks up the row about whether the requirement can still move
 
 ### D. Cross-spec dependencies
 

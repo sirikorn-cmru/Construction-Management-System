@@ -127,6 +127,8 @@ Backlog รวมของโปรเจกต์ ทุกรายการ�
 
 Append one row per backlog candidate. Item id is `BL-{NNN}-{MM}` where `{NNN}` is the spec number and `{MM}` a 2-digit counter within that spec. `อัปเดตล่าสุด` is today's date.
 
+While the spec is still `draft`, write its `Spec` cell as `SPEC-{NNN} (draft)`. Work may start against a draft spec, but whoever picks up the row needs to know the ground can still move. The `approve-spec` skill clears the marker when the spec is approved.
+
 Never rewrite or renumber existing rows. If a new spec supersedes an old one, set the old rows' status to `ยกเลิก` and add the new rows below — the backlog is append-only so its history stays readable.
 
 ## Step 8 — Write the log
