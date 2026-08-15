@@ -30,7 +30,7 @@ Two skills own this phase. Do not hand-roll their steps; they exist so the numbe
 Established conventions (set by that skill — follow them if you ever touch these files by hand):
 
 - Spec filename: `docs/01-requirements/01-spec/{YYYYMMDD}-{NNN}-{slug}.md`. `NNN` is a **global** 3-digit sequence that never resets and is never reused; the slug is lowercase ASCII kebab-case even though the body is Thai.
-- Requirement ids: `SPEC-{NNN}` → `FR-{NNN}-01` → backlog `BL-{NNN}-01`.
+- Requirement ids: `SPEC-{NNN}` → `FR-{NNN}-01` → backlog `BL-{NNN}-01`. Business rules are `BR-{NNN}-01` and non-functional requirements `NFR-{NNN}-01` — **every requirement needs an id, including NFRs**, or the backlog cannot cite it and coverage checks silently skip it.
 - Backlog priority is MoSCoW; status is `ยังไม่เริ่ม / กำลังทำ / เสร็จแล้ว / ยกเลิก`.
 - Each working session appends to `docs/05-log/{YYYYMMDD}-log.md` — decisions and their reasons, not a file diff.
 

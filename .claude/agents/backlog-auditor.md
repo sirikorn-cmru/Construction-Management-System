@@ -13,7 +13,9 @@ Read every `docs/01-requirements/01-spec/*.md` (skip `index.md`), then `docs/01-
 
 ### A. Coverage — requirements with nothing to implement them
 
-Every `FR-` id in every spec should be reachable from at least one backlog row. Every `BR-` id that requires code to enforce should be too — a business rule that only describes how to read a number does not need its own row, but one that constrains what the system permits does.
+Every `FR-` and `NFR-` id in every spec should be reachable from at least one backlog row. Every `BR-` id that requires code to enforce should be too — a business rule that only describes how to read a number does not need its own row, but one that constrains what the system permits does.
+
+A requirement written without an id is itself a finding: it cannot be cited, so coverage checks skip it silently.
 
 A spec whose status is `superseded` is exempt. Judge coverage by whether the row's text would actually produce that requirement, not by whether the id string appears — a row that merely cites `FR-001-08` while describing something else is *not* coverage.
 
