@@ -106,6 +106,8 @@ Every FR must be traceable to the raw requirement or to an answer the user gave.
 
 If the decision was SUPERSEDE, also set the old spec's `สถานะ: superseded` and add a pointer to the new spec id. Do not delete it.
 
+Then add the spec to the table in `docs/01-requirements/01-spec/index.md` — spec id, title as a wikilink, status, date. A spec that is not reachable from the folder's `index.md` is invisible to anyone browsing the vault, so this step is not optional. When a spec's status changes later, update the row.
+
 ## Step 7 — Update the backlog
 
 Update `docs/01-requirements/backlog.md`. Create it from this template if it does not exist:

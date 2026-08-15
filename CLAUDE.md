@@ -19,7 +19,12 @@ The active phase of this project is **writing requirements documents and buildin
 | `02-plan/` | Roadmap, phases and milestones, feature priority, resource and time estimates |
 | `03-task/` | Detailed task breakdown of individual backlog items, once work starts |
 
-Use the **`requirement-to-backlog` skill** for anything that starts from a raw requirement. It runs the full pipeline — analyze against existing specs, clarify with the user, write the spec, update the backlog, write the log — and it owns the file-naming and ID rules below. Do not hand-roll these steps; the skill exists so the numbering and traceability stay consistent. It delegates the read-only analysis to the `requirement-analyst` subagent, which never writes and never asks the user directly.
+Two skills own this phase. Do not hand-roll their steps; they exist so the numbering and traceability stay consistent. Each delegates its read-only analysis to a subagent that never writes and never asks the user directly.
+
+| Skill | Use it when | Subagent |
+| --- | --- | --- |
+| `requirement-to-backlog` | A raw requirement arrives. Analyzes it against existing specs, clarifies with the user, writes the spec, updates the backlog, writes the log. Owns the naming and id rules below. | `requirement-analyst` |
+| `audit-backlog` | Checking whether the backlog still matches the specs, or after a spec was edited outside the pipeline. Reports drift and fixes the backlog — never the specs. | `backlog-auditor` |
 
 Established conventions (set by that skill — follow them if you ever touch these files by hand):
 
