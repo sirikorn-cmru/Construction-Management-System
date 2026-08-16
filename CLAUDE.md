@@ -16,7 +16,7 @@ The active phase of this project is **writing requirements documents and buildin
 | --- | --- |
 | `01-spec/` | Spec documents, one per requirement — the source of truth |
 | `backlog.md` | **Product Backlog** — the single master list, append-only |
-| `02-plan/` | Roadmap, phases and milestones, feature priority, resource and time estimates |
+| `02-plan/` | Roadmap, phases and milestones, resource and time estimates — plus `feature-list.md` and `user-journey.md`, both derived from the backlog by `backlog-to-features` and regenerated wholesale on each run |
 | `03-task/` | Detailed task breakdown of individual backlog items, once work starts |
 
 Two skills own this phase. Do not hand-roll their steps; they exist so the numbering and traceability stay consistent. Each delegates its read-only analysis to a subagent that never writes and never asks the user directly.
@@ -26,6 +26,7 @@ Two skills own this phase. Do not hand-roll their steps; they exist so the numbe
 | `requirement-to-backlog` | A raw requirement arrives. Analyzes it against existing specs, clarifies with the user, writes the spec, updates the backlog, writes the log. Owns the naming and id rules below. | `requirement-analyst` |
 | `audit-backlog` | Checking whether the backlog still matches the specs, or after a spec was edited outside the pipeline. Reports drift and fixes the backlog — never the specs. | `backlog-auditor` |
 | `approve-spec` | Moving a spec from draft to approved. Runs the readiness gates, presents what approving commits to, records the owner's decision. | `spec-readiness-reviewer` |
+| `backlog-to-features` | Grouping the backlog into a feature list with MoSCoW priorities, and deriving one user journey per actor as a Mermaid flowchart. Both are derived views written to `02-plan/`; neither introduces work the backlog does not have. | `feature-journey-analyst` |
 
 Established conventions (set by that skill — follow them if you ever touch these files by hand):
 
