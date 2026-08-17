@@ -27,6 +27,7 @@ Two skills own this phase. Do not hand-roll their steps; they exist so the numbe
 | `audit-backlog` | Checking whether the backlog still matches the specs, or after a spec was edited outside the pipeline. Reports drift and fixes the backlog — never the specs. | `backlog-auditor` |
 | `approve-spec` | Moving a spec from draft to approved. Runs the readiness gates, presents what approving commits to, records the owner's decision. | `spec-readiness-reviewer` |
 | `backlog-to-features` | Grouping the backlog into a feature list with MoSCoW priorities, and deriving one user journey per actor as a Mermaid flowchart. Both are derived views written to `02-plan/`; neither introduces work the backlog does not have. | `feature-journey-analyst` |
+| `build-prototype` | Building a clickable HTML prototype under `02-design/01-prototypes/`, styled from `DESIGN.md`. Always presents a plan for approval first, and always asks whether to open a new version folder or edit the latest. | `prototype-planner` |
 
 Established conventions (set by that skill — follow them if you ever touch these files by hand):
 
@@ -49,7 +50,8 @@ Guidance for this phase:
 
 - Requirements flow **one direction**: `01-spec` → `backlog.md` → `02-plan` / `03-task`. Every backlog item must trace back to an `FR-` id in a spec. A backlog item with no matching spec is a gap in the spec — raise it rather than inventing a requirement to justify the item.
 - Scope belongs in `01-spec` and nowhere else. Both what the system does *and* what it explicitly does not do.
-- `02-design/`, `03-testing/`, `04-retrospectives/` are placeholders for later phases. Do not populate them ahead of the requirements — a design doc written before its spec exists will conflict with it.
+- `02-design/`, `03-testing/`, `04-retrospectives/` are placeholders for later phases. Do not populate them ahead of the requirements — a design doc written before its spec exists will conflict with it. The exception is `build-prototype`, which writes into `02-design/01-prototypes/` only from requirements that already exist, and traces every screen back to them.
+- `DESIGN.md` at the repo root is the design system — brand, tokens, components, and UX rules. It is a standing reference like this file, not a phase deliverable, and every rule in it cites the requirement that forces it. Screens are styled from its tokens; nothing there is a free choice.
 - When a requirement is unclear, ask the user rather than guessing, and always offer at least 3 distinct options with their trade-offs. Anything you assume instead of confirming must be written into the spec's ข้อสมมติ section, not left implicit.
 
 ## Documentation pipeline
